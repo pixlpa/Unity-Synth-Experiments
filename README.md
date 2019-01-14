@@ -5,8 +5,8 @@ A set of simple generative sound engines using OnAudioFilterRead() in Unity. I b
 ## pxFemme
 A kind of fun 2-op FM design with feedback on both the modulator and the carrier. Makes some good growly sounds
 
-##pxSnarple
+## pxSnarple
 Simple loopy sample player/synth loosely inspired by the Volca Sample in loop mode
 
-##pxStrax
+## pxStrax
 2-osc subtractive square+triangle synth design with a Moog-style VCF and waveshaping distortion
