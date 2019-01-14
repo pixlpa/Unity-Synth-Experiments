@@ -8,22 +8,22 @@ public class ToneTrigger : MonoBehaviour {
     public pxFemme synth;
 
 	void Start () {
-        synth = GetComponentInChildren<pxFemme>();
+        synth = GetComponent<pxFemme>();
 	}
 	
 	void Update () {
-        synth.feedback = transform.position.x * 0.1f + 0.2f;
-        synth.modfeedback = transform.position.z * 0.1f + 0.2f;
-        synth.modulation = transform.position.y;
+        synth.feedback = transform.position.x * 0.3f + 0.5f;
+        synth.modfeedback = transform.position.z * 0.3f + 0.5f;
+        synth.modulation = transform.position.y*0.75f;
 
 		if (!isPlaying)
         {
-            if (transform.position.y > 0.05)
+            if (transform.position.y > 0.4)
             {
                 isPlaying = true;
                 synth.KeyOn(note);
             }
-        } else if (transform.position.y <= 0.05)
+        } else if (transform.position.y <= 0.4)
         {
             isPlaying = false;
             synth.KeyOff();

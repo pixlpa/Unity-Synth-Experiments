@@ -10,8 +10,8 @@ public class SnarpChk : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ctrl = GetComponentInChildren<pxSnarple>();
-        ctrl.length = 0.02f + transform.position.x * 0.01f;
-        ctrl.start = 0.5f + transform.position.z * 0.1f;
+        ctrl.length = 0.03f + transform.position.x * 0.02f;
+        ctrl.start = 0.5f + transform.position.z * 0.4f;
         ctrl.speed = 1f+ transform.position.y*0.5f;
         ctrl.KeyOn();
 
@@ -21,6 +21,7 @@ public class SnarpChk : MonoBehaviour {
 	void Update () {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
         life += Time.deltaTime;
+        if (life > lifespan * 0.75) ctrl.KeyOff();
         if (life > lifespan) Destroy(gameObject);
 	}
 }

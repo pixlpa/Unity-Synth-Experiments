@@ -19,7 +19,7 @@ public class generator : MonoBehaviour {
         if (acc_time > interval)
         {
             acc_time = 0;
-            GameObject pop = Instantiate(snarp, transform.position + transform.forward * 0.25f, transform.rotation);
+            GameObject pop = Instantiate(snarp, transform.position + transform.forward * 0.05f, transform.rotation);
             pop.GetComponent<Rigidbody>().velocity = pop.transform.forward * force;
         }
 

@@ -9,76 +9,48 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1426785918132710}
+  m_RootGameObject: {fileID: 1735355145439714}
   m_IsPrefabAsset: 1
---- !u!1 &1426785918132710
+--- !u!1 &1735355145439714
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4728004250849600}
-  - component: {fileID: 33663656015858382}
-  - component: {fileID: 23261113286545848}
-  - component: {fileID: 114640561324651046}
+  - component: {fileID: 4859103710648862}
+  - component: {fileID: 33936780350250864}
+  - component: {fileID: 23190842882904316}
+  - component: {fileID: 114110523919825112}
+  - component: {fileID: 82119347811315580}
+  - component: {fileID: 114348690952263810}
+  - component: {fileID: 114500960850432264}
   m_Layer: 0
-  m_Name: SnarpEffect
+  m_Name: StraxEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1889986400835668
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4424293654913230}
-  - component: {fileID: 114700080000565208}
-  - component: {fileID: 82224333508533478}
-  m_Layer: 0
-  m_Name: Snarple
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4424293654913230
+--- !u!4 &4859103710648862
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1889986400835668}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4728004250849600}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4728004250849600
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1426785918132710}
+  m_GameObject: {fileID: 1735355145439714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
-  m_Children:
-  - {fileID: 4424293654913230}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23261113286545848
+--- !u!23 &23190842882904316
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1426785918132710}
+  m_GameObject: {fileID: 1735355145439714}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -88,7 +60,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b6ee17451b261c34f87e60a34dd86d27, type: 2}
+  - {fileID: 2100000, guid: 8519cb641aa28486d8e15495bdd51e2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,19 +80,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33663656015858382
+--- !u!33 &33936780350250864
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1426785918132710}
+  m_GameObject: {fileID: 1735355145439714}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!82 &82224333508533478
+--- !u!82 &82119347811315580
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1889986400835668}
+  m_GameObject: {fileID: 1735355145439714}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -179,7 +151,7 @@ AudioSource:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -200,7 +172,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.199
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -209,41 +181,57 @@ AudioSource:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
---- !u!114 &114640561324651046
+    m_RotationOrder: 4
+--- !u!114 &114110523919825112
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1426785918132710}
+  m_GameObject: {fileID: 1735355145439714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2002fa7e2903f4d409a1bab45b5da7a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 21309ceb06d144716aa6c1be394c6542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 0.1
   ctrl: {fileID: 0}
-  lifespan: 0.25
+  lifespan: 0.9
   life: 0
---- !u!114 &114700080000565208
+--- !u!114 &114348690952263810
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1889986400835668}
+  m_GameObject: {fileID: 1735355145439714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7249b39ac4e534e7589f09efaed07bc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a0e070df39174dc0a8d2d96206944ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frequency: 1
+  amp: 1
+  value: 0
+--- !u!114 &114500960850432264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735355145439714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ccbd4af8581042cbbc4be224228915b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sampleRate: 44100
-  sample: {fileID: 8300000, guid: d33a38903360d44b58a2dea4c1c8ec73, type: 3}
-  volume: 0.3
-  start: 0
-  length: 0
-  speed: 1
-  attack: 0.003
-  release: 0.05
-  sustain: 1
-  amplifier: 1
-  delta: 0
+  volume: 0.1
+  cutoff: 0.1
+  resonance: 0.8
+  envelope: 0.1
+  harmonic: 1.003
+  osc2Mix: 0.1
+  distortion: 0.75
+  lfoRate: 5
+  lfoAmp: 0.85
+  attack: 0.001
+  release: 0.6
+  sustain: 0
