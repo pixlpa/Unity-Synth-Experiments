@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pxLFO : MonoBehaviour {
+public class pxLFO {
     public float frequency = 1f;
     public float amp = 1f;
     private float sampleRate = 44100f;

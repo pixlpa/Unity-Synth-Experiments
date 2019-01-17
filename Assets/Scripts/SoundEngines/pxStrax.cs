@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(pxLFO))]
 public class pxStrax : MonoBehaviour {
     public float sampleRate = 44100f; 
     private float level = 0.0f;
@@ -41,12 +40,11 @@ public class pxStrax : MonoBehaviour {
     private float in3 = 0f;
     private float in4 = 0f;
 
-    private pxLFO lfo;
+    private pxLFO lfo = new pxLFO();
 
     // Use this for initialization
     void Start () 
     {
-        lfo = GetComponent<pxLFO>();
         lfo.frequency = lfoRate;
         lfo.amp = lfoAmp;
     }

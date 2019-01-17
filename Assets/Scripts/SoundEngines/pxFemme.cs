@@ -27,6 +27,12 @@ public class pxFemme : MonoBehaviour {
     private float cx = 0.0f;
     private float step = 0.0f;
     private float history1 = 0.0f;
+
+    private float modx = 0f;
+    private float modfx = 0f;
+    private float fbx = 0f;
+    private float paramstep = 1f;
+
     //----oscillator magic numbers
     static private float kPi = 3.14159265359f;
     static private float kPi2 = 6.28318530718f;
@@ -35,7 +41,9 @@ public class pxFemme : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () { 
+    void Start () {
+        paramstep = 50f / sampleRate;
+
     }
 
     public float Run()
@@ -67,20 +75,27 @@ public class pxFemme : MonoBehaviour {
         step = freq / sampleRate;
     }
 
+    private void ParamUpdate() {
+        modx = Mathf.Lerp(modx,modulation,paramstep);
+        modfx = Mathf.Lerp(modfx, modfeedback, paramstep);
+        fbx = Mathf.Lerp(fbx, feedback, paramstep);
+
+    }
     public float FBFMRun()
     {
-        float xstep = step + history1 * feedback * step;
-        mx += step * multiplier + history1 * modfeedback * step * multiplier;
+        ParamUpdate();
+        float xstep = step + history1 * fbx * step;
+        mx += step * multiplier + history1 * modfx * step * multiplier;
         cx += xstep;
         mx -= Mathf.Floor(mx);
         cx -= Mathf.Floor(cx);
-        var x = cx + modulation * fast_sin(kPi2 * mx);
+        var x = cx + modx * fast_sin(kPi2 * mx);
         x -= Mathf.Floor(x);
         history1 = fast_sin(kPi2 * x);
         return history1;
     }
 
-    public void KeyOn(int midinote)
+    public void KeyOn(float midinote)
     {
         SetNote(midinote);
         delta = 1.0f / (attack * sampleRate);

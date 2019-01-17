@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 23190842882904316}
   - component: {fileID: 114110523919825112}
   - component: {fileID: 82119347811315580}
-  - component: {fileID: 114348690952263810}
   - component: {fileID: 114500960850432264}
   m_Layer: 0
   m_Name: StraxEffect
@@ -197,20 +196,6 @@ MonoBehaviour:
   ctrl: {fileID: 0}
   lifespan: 0.9
   life: 0
---- !u!114 &114348690952263810
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1735355145439714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a0e070df39174dc0a8d2d96206944ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frequency: 1
-  amp: 1
-  value: 0
 --- !u!114 &114500960850432264
 MonoBehaviour:
   m_ObjectHideFlags: 1
