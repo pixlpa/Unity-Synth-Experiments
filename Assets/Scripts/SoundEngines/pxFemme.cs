@@ -13,13 +13,11 @@ public class pxFemme : MonoBehaviour {
     public float modfeedback = 0.01f;
 
     //----envelope
+    private pxLope lope;
     public float attack = 0.003f;
     public float release = 0.2f;
-    public float current = 0.0f;
     public bool sustain = false;
-    public float amplifier = 1.0f;
 
-    public float delta = 0.0f;
 
 
     //----oscillator internals
@@ -43,12 +41,13 @@ public class pxFemme : MonoBehaviour {
     // Use this for initialization
     void Start () {
         paramstep = 50f / sampleRate;
-
+        lope = new pxLope();
+        lope.SetParams(attack, release, sustain);
     }
 
     public float Run()
     {
-        level = FBFMRun() * LopeRun();
+        level = FBFMRun() * lope.Run();
         return level;
     }
 
@@ -98,32 +97,13 @@ public class pxFemme : MonoBehaviour {
     public void KeyOn(float midinote)
     {
         SetNote(midinote);
-        delta = 1.0f / (attack * sampleRate);
+        lope.SetParams(attack, release, sustain);
+        lope.KeyOn();
     }
 
     public void KeyOff()
     {
-        delta = -1.0f / (release * sampleRate);
-    }
-
-    //--- AR/ASR envelope
-    public float LopeRun()
-    {
-        float lopestate = current;
-        if (delta > 0.0f)
-        {
-            current += delta;
-            if (current >= 1.0f)
-            {
-                current = 1.0f;
-                if (!sustain) KeyOff();
-            }
-        }
-        else
-        {
-            current = Mathf.Max(current + delta, 0.0f);
-        }
-        return lopestate;
+        lope.KeyOff();
     }
 
     void OnAudioFilterRead(float[] data, int channels)

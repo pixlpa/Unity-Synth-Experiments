@@ -18,12 +18,10 @@ public class pxStrax : MonoBehaviour {
     public float lfoAmp = 0.1f;
 
     //----envelope
+    private pxLope lope = new pxLope();
     public float attack = 0.003f;
     public float release = 0.2f;
-    private float current = 0.0f;
     public bool sustain = false;
-    private float delta = 0.0f;
-
 
     //----osc internals
     private float px1 = 0.0f;
@@ -47,18 +45,14 @@ public class pxStrax : MonoBehaviour {
     {
         lfo.frequency = lfoRate;
         lfo.amp = lfoAmp;
-    }
-
-    void Awake()
-    {
-
+        lope.SetParams(attack, release, sustain);
     }
 
     public float Run()
     {
         lfo.frequency = lfoRate;
         lfo.amp = lfoAmp;
-        level = FilterRun(StraxRun()) * LopeRun();
+        level = lope.Run() * FilterRun(StraxRun());
         return level;
     }
 
@@ -81,7 +75,7 @@ public class pxStrax : MonoBehaviour {
 
     public float FilterRun(float filterIn)
     {
-        float fc = Mathf.Clamp (cutoff+current*envelope+lfo.Run()*cutoff, 0.0005f, 1.0f);
+        float fc = Mathf.Clamp (cutoff+lope.current*envelope+lfo.Run()*cutoff, 0.0005f, 1.0f);
         float res = Mathf.Clamp (resonance, 0f,1f);
         float input = filterIn;
         float f = fc * 1.16f;
@@ -118,31 +112,13 @@ public class pxStrax : MonoBehaviour {
     public void KeyOn(float midinote)
     {
         SetNote(midinote);
-        delta = 1.0f / (attack * sampleRate);
+        lope.SetParams(attack, release, sustain);
+        lope.KeyOn();
     }
 
     public void KeyOff()
     {
-        delta = -1.0f / (release * sampleRate);
-    }
-    //--- AR/ASR envelope
-    public float LopeRun()
-    {
-        float lopestate = current;
-        if (delta > 0.0f)
-        {
-            current += delta;
-            if (current >= 1.0f)
-            {
-                current = 1.0f;
-                if (!sustain) KeyOff();
-            }
-        }
-        else
-        {
-            current = Mathf.Max(current + delta, 0.0f);
-        }
-        return lopestate;
+        lope.KeyOff();
     }
 
     void OnAudioFilterRead(float[] data, int channels)
