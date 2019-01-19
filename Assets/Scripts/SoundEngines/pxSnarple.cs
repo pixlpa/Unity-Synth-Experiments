@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pxSnarple : MonoBehaviour { 
+public class pxSnarple : MonoBehaviour
+{
     public float sampleRate = 44100f;
     public AudioClip sample;
-    
+
     private float level = 0.0f;
     public float volume = 0.5f;
     //----player parameters
@@ -24,7 +25,7 @@ public class pxSnarple : MonoBehaviour {
 
 
     //----player internals
-    private float posx= 0.0f;
+    private float posx = 0.0f;
     private float lenx = 0.0f;
     private float startx = 0f;
     private float[] sampdata;
@@ -33,7 +34,8 @@ public class pxSnarple : MonoBehaviour {
     private int sampchans;
 
     // Use this for initialization
-    void Start () { 
+    void Start()
+    {
         samplength = sample.samples * sample.channels;
         sampcount = (float)sample.samples;
         sampdata = new float[samplength];
@@ -60,32 +62,50 @@ public class pxSnarple : MonoBehaviour {
 
     public void SetParam(float sm_length, float sm_start, float sm_speed)
     {
-        length = Mathf.Max(sm_length,0.00001f);
-        start = Mathf.Max(Mathf.Min(sm_start,1f),0f);
+        length = Mathf.Max(sm_length, 0.00001f);
+        start = Mathf.Max(Mathf.Min(sm_start, 1f), 0f);
         speed = sm_speed;
     }
 
+    private float previousSnarpValue = 0.0f;
     public float SnarpleRun()
     {
         float duck = 1f;
         float lastpos = posx;
-        lenx = length*(sampcount - startx*sampcount);
+        lenx = length * (sampcount - startx * sampcount);
         posx += speed;
-        posx = posx%lenx;
+        posx = posx % lenx;
         if (posx < 0f)
         {
             posx = lenx + posx;
         }
-        if (posx < 100f) duck = Mathf.Lerp(0f, 1f, posx / 100f);
-        else if (posx > lenx - 100) duck = Mathf.Lerp(0f, 1f, (lenx - posx) / 100f);
-        if (Mathf.Abs(lastpos - posx) > speed) startx = start;//check if a new loop by testing the phase difference against speed
-        float currentx = posx + startx*sampcount;
-        float snarpval = Mathf.Lerp(sampdata[(int)currentx*sampchans],sampdata[((int)currentx+1)*sampchans],currentx%1);
-        return snarpval*duck;
+        if (posx < 100f) {
+            duck = Mathf.Lerp(0f, 1f, posx / 100f);
+        }
+        else if (posx > lenx - 100){
+            duck = Mathf.Lerp(0f, 1f, (lenx - posx) / 100f);
+        }
+        //check if a new loop by testing the phase difference against speed
+        if (Mathf.Abs(lastpos - posx) > speed){
+            startx = start;
+        }
+        float currentx = posx + startx * sampcount;
+
+        int sampDataIndex = (int)currentx * sampchans;
+        int sampDataIndex2 = ((int)currentx + 1) * sampchans;
+
+        float snarpval = previousSnarpValue;
+        if(sampDataIndex >= 0 && sampDataIndex < sampdata.Length-1 &&
+           sampDataIndex2 >= 0 && sampDataIndex2 < sampdata.Length-1){
+           snarpval = Mathf.Lerp(sampdata[sampDataIndex], sampdata[sampDataIndex2], currentx % 1);
+        }
+
+        previousSnarpValue = snarpval;
+        return snarpval * duck;
     }
 
     public void KeyOn()
-    {   
+    {
         posx = 0f;
         delta = 1.0f / (attack * sampleRate);
     }
